@@ -59,4 +59,6 @@ public class APIService {
                 .max(Comparator.comparing(OpenWeatherComponent::getDt))
                 .orElse(null);
     }
+
+
 }

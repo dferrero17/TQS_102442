@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import tqs.homework.services.ReverseGeoCodingService;
 
 @RestController
 @RequestMapping("/api")
@@ -19,11 +20,13 @@ public class APIController {
     private final APIService aqService;
     private final GeoCodingService geoService;
     private final Logger logger = LoggerFactory.getLogger(APIController.class);
+    private final ReverseGeoCodingService reverseGeoCodingService;
 
-    public APIController(APIService aqService, GeoCodingService geoService) {
+    public APIController(APIService aqService, GeoCodingService geoService, ReverseGeoCodingService reverseGeoCodingService) {
         this.aqService = aqService;
         this.geoService = geoService;
         logger.info("APIController Initialized");
+        this.reverseGeoCodingService = reverseGeoCodingService;
     }
 
     @GetMapping("/airquality/now")
@@ -51,6 +54,17 @@ public class APIController {
     @GetMapping("/city")
     public ResponseEntity<MapQuestData> getCity(@RequestParam Double lat, @RequestParam Double lon) {
         MapQuestData data = geoService.getGeoCoding(lat, lon);
+        if (data == null) {
+            logger.info("MapQuest API failed");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+        logger.info("MapQuest API called");
+        return ResponseEntity.ok(data);
+    }
+
+    @GetMapping("/city/{location}")
+    public ResponseEntity<MapQuestLocationData> getCity(@RequestParam String location) {
+        MapQuestLocationData data = reverseGeoCodingService.getReverseGeoCoding(location);
         if (data == null) {
             logger.info("MapQuest API failed");
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
