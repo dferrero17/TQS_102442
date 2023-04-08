@@ -2,7 +2,10 @@ package dferrero17.homework.api.mapquest;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import dferrero17.homework.cache.Storage;
 import lombok.Data;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.List;
@@ -14,6 +17,7 @@ public class MapQuestData {
     private String city;
     private String road;
     private String zip;
+    private final Logger logger = LoggerFactory.getLogger(Storage.class);
 
     @JsonProperty("results")
     private void unpackInfo(List<HashMap<String, Object>> results) {
@@ -27,6 +31,7 @@ public class MapQuestData {
         city = location.get("adminArea5").toString();
         road = location.get("street").toString();
         zip = location.get("postalCode").toString();
+        logger.info("MapQuest Unpacked");
     }
 
     @Override

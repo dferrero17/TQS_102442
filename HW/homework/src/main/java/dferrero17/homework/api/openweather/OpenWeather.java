@@ -1,5 +1,8 @@
 package dferrero17.homework.api.openweather;
 
+import dferrero17.homework.cache.Storage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import retrofit2.Retrofit;
@@ -10,6 +13,7 @@ import java.util.Date;
 @Service
 public class OpenWeather {
     private final IOpenWeatherApi api;
+    private final Logger logger = LoggerFactory.getLogger(Storage.class);
 
     @Value("${openweather.apikey}")
     private String apiKey;
@@ -21,6 +25,7 @@ public class OpenWeather {
                 .build();
 
         api = retrofit.create(IOpenWeatherApi.class);
+        logger.info("OpenWeather API created");
     }
 
     public OpenWeatherData call(Double lat, Double lon) {
@@ -28,9 +33,11 @@ public class OpenWeather {
         long start = end - 10 * 24 * 60 * 60; // 10 days
 
         try {
+            logger.info("OpenWeather API called");
             return api.getHistory(lat, lon, start, end, apiKey).execute().body();
         } catch (Exception e) {
             e.printStackTrace();
+            logger.info("OpenWeather API failed");
             return null;
         }
     }
