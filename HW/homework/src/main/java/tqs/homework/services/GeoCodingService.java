@@ -1,10 +1,10 @@
-package dferrero17.homework.services;
+package tqs.homework.services;
 
-import dferrero17.homework.api.mapquest.MapQuest;
-import dferrero17.homework.api.mapquest.MapQuestData;
-import dferrero17.homework.api.mapquest.MapQuestKey;
-import dferrero17.homework.cache.Storage;
-import dferrero17.homework.statistics.Stats;
+import tqs.homework.api.mapquest.MapQuest;
+import tqs.homework.api.mapquest.MapQuestData;
+import tqs.homework.api.mapquest.MapQuestKey;
+import tqs.homework.cache.Storage;
+import tqs.homework.statistics.Stats;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ public class GeoCodingService {
     private MapQuest api;
 
     private Storage<MapQuestKey, MapQuestData> cache;
-    private final Logger logger = LoggerFactory.getLogger(Storage.class);
+    private final Logger logger = LoggerFactory.getLogger(GeoCodingService.class);
 
 
     public GeoCodingService(MapQuest api) {

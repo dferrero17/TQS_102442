@@ -1,4 +1,4 @@
-package dferrero17.homework.api.openweather;
+package tqs.homework.api.openweather;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

@@ -1,4 +1,4 @@
-package dferrero17.homework.cache;
+package tqs.homework.cache;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,12 +24,10 @@ public class Storage<Key, Value> {
     }
 
     public Value get(Key key) {
-        if (ttl.containsKey(key)) {
-            if (System.currentTimeMillis() - ttl.get(key) > maxTtl) {
-                data.remove(key);
-                ttl.remove(key);
-                logger.info("Storage removed");
-            }
+        if (ttl.containsKey(key) && System.currentTimeMillis() - ttl.get(key) > maxTtl) {
+            data.remove(key);
+            ttl.remove(key);
+            logger.info("Storage removed");
         }
         logger.info("Storage get");
         return data.get(key);

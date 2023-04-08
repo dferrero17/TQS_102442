@@ -1,4 +1,4 @@
-package dferrero17.homework.api.mapquest;
+package tqs.homework.api.mapquest;
 
 import retrofit2.http.GET;
 import retrofit2.http.Query;

@@ -1,4 +1,4 @@
-package dferrero17.homework;
+package tqs.homework;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

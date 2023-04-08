@@ -1,12 +1,11 @@
-package dferrero17.homework.controller;
+package tqs.homework.controller;
 
 
-import dferrero17.homework.api.mapquest.MapQuestData;
-import dferrero17.homework.api.openweather.OpenWeatherComponent;
-import dferrero17.homework.api.openweather.OpenWeatherData;
-import dferrero17.homework.cache.Storage;
-import dferrero17.homework.services.APIService;
-import dferrero17.homework.services.GeoCodingService;
+import tqs.homework.api.mapquest.MapQuestData;
+import tqs.homework.api.openweather.OpenWeatherComponent;
+import tqs.homework.api.openweather.OpenWeatherData;
+import tqs.homework.services.APIService;
+import tqs.homework.services.GeoCodingService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -19,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 public class APIController {
     private final APIService aqService;
     private final GeoCodingService geoService;
-    private final Logger logger = LoggerFactory.getLogger(Storage.class);
+    private final Logger logger = LoggerFactory.getLogger(APIController.class);
 
     public APIController(APIService aqService, GeoCodingService geoService) {
         this.aqService = aqService;
@@ -52,7 +51,6 @@ public class APIController {
     @GetMapping("/city")
     public ResponseEntity<MapQuestData> getCity(@RequestParam Double lat, @RequestParam Double lon) {
         MapQuestData data = geoService.getGeoCoding(lat, lon);
-        System.out.println(data);
         if (data == null) {
             logger.info("MapQuest API failed");
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();

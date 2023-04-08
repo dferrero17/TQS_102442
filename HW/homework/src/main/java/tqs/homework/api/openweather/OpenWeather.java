@@ -1,6 +1,5 @@
-package dferrero17.homework.api.openweather;
+package tqs.homework.api.openweather;
 
-import dferrero17.homework.cache.Storage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,7 +12,7 @@ import java.util.Date;
 @Service
 public class OpenWeather {
     private final IOpenWeatherApi api;
-    private final Logger logger = LoggerFactory.getLogger(Storage.class);
+    private final Logger logger = LoggerFactory.getLogger(OpenWeather.class);
 
     @Value("${openweather.apikey}")
     private String apiKey;

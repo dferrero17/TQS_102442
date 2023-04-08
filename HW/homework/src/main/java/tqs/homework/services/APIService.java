@@ -1,11 +1,11 @@
-package dferrero17.homework.services;
+package tqs.homework.services;
 
-import dferrero17.homework.api.openweather.OpenWeather;
-import dferrero17.homework.api.openweather.OpenWeatherComponent;
-import dferrero17.homework.api.openweather.OpenWeatherData;
-import dferrero17.homework.api.openweather.OpenWeatherKey;
-import dferrero17.homework.cache.Storage;
-import dferrero17.homework.statistics.Stats;
+import tqs.homework.api.openweather.OpenWeather;
+import tqs.homework.api.openweather.OpenWeatherComponent;
+import tqs.homework.api.openweather.OpenWeatherData;
+import tqs.homework.api.openweather.OpenWeatherKey;
+import tqs.homework.cache.Storage;
+import tqs.homework.statistics.Stats;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ import java.util.Comparator;
 public class APIService {
     private OpenWeather api;
     private final Storage<OpenWeatherKey, OpenWeatherData> cache;
-    private final Logger logger = LoggerFactory.getLogger(Storage.class);
+    private final Logger logger = LoggerFactory.getLogger(APIService.class);
 
     public APIService(OpenWeather api) {
         this.api = api;

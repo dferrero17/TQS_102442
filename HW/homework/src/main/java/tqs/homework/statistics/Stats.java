@@ -1,13 +1,13 @@
-package dferrero17.homework.statistics;
-import dferrero17.homework.cache.Storage;
+package tqs.homework.statistics;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Stats {
     private static Stats instance = null;
-    private final Logger logger = LoggerFactory.getLogger(Storage.class);
+    private final Logger logger = LoggerFactory.getLogger(Stats.class);
 
     private Stats() {}
 
@@ -54,8 +54,8 @@ public class Stats {
     }
 
     // convert to hashmap
-    public HashMap<String, Integer> toHashMap() {
-        HashMap<String, Integer> map = new HashMap<>();
+    public Map<String, Integer> toHashMap() {
+        Map<String, Integer> map = new HashMap<>();
         map.put("cacheMisses", cacheMisses);
         map.put("cacheHits", cacheHits);
         map.put("apiHits", apiHits);

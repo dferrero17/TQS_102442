@@ -1,7 +1,6 @@
-package dferrero17.homework.api.openweather;
+package tqs.homework.api.openweather;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import dferrero17.homework.cache.Storage;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,7 +17,7 @@ import java.util.List;
 public class OpenWeatherData {
     private double latitude;
     private double longitude;
-    private final Logger logger = LoggerFactory.getLogger(Storage.class);
+    private final Logger logger = LoggerFactory.getLogger(OpenWeatherData.class);
 
     @JsonProperty("coord")
     private void unpackCoord(HashMap<String, Double> coord) {

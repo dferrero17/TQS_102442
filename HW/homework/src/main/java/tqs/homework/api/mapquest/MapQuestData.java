@@ -1,8 +1,7 @@
-package dferrero17.homework.api.mapquest;
+package tqs.homework.api.mapquest;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import dferrero17.homework.cache.Storage;
 import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +16,7 @@ public class MapQuestData {
     private String city;
     private String road;
     private String zip;
-    private final Logger logger = LoggerFactory.getLogger(Storage.class);
+    private final Logger logger = LoggerFactory.getLogger(MapQuestData.class);
 
     @JsonProperty("results")
     private void unpackInfo(List<HashMap<String, Object>> results) {

@@ -1,4 +1,4 @@
-package dferrero17.homework;
+package tqs.homework;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

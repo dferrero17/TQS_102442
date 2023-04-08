@@ -1,6 +1,5 @@
-package dferrero17.homework.api.mapquest;
+package tqs.homework.api.mapquest;
 
-import dferrero17.homework.cache.Storage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,7 +11,7 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
 @Service
 public class MapQuest {
     private final IMapQuest api;
-    private final Logger logger = LoggerFactory.getLogger(Storage.class);
+    private final Logger logger = LoggerFactory.getLogger(MapQuest.class);
 
     @Value("${mapquest.apikey}")
     private String apiKey;
@@ -32,8 +31,6 @@ public class MapQuest {
             logger.info("MapQuest API called");
             return api.getLocation(apiKey, lat + "," + lon).execute().body();
         } catch (Exception e) {
-            System.out.println("OI?????");
-            e.printStackTrace();
             logger.info("MapQuest API failed");
             return null;
         }

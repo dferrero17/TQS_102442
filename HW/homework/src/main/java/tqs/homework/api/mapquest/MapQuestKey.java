@@ -1,6 +1,4 @@
-package dferrero17.homework.api.mapquest;
-
-import dferrero17.homework.api.openweather.OpenWeatherKey;
+package tqs.homework.api.mapquest;
 
 import java.util.Objects;
 

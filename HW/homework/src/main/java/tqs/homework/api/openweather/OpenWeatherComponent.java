@@ -1,9 +1,11 @@
-package dferrero17.homework.api.openweather;
+package tqs.homework.api.openweather;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 
@@ -21,6 +23,7 @@ public class OpenWeatherComponent {
     private double pm10;
     private double nh3;
     private long dt;
+    private final Logger logger = LoggerFactory.getLogger(OpenWeatherComponent.class);
 
     @JsonProperty("dt")
     private void unpackDt(long dt) {
@@ -42,6 +45,7 @@ public class OpenWeatherComponent {
         this.pm2_5 = components.get("pm2_5");
         this.pm10 = components.get("pm10");
         this.nh3 = components.get("nh3");
+        logger.info("OpenWeather Unpacked");
     }
 
     @Override
