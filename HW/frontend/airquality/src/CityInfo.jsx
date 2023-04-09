@@ -65,24 +65,59 @@ const CityInfo = () => {
             <div className='text-9xl mb-10'>Air Quality Information</div>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="cityInput">City: </label>
-                <input type="text" id="cityInput" value={input} onChange={handleInputChange} />
-                <button type="submit">Submit</button>
+                <input type="text" id="cityInput" value={input} onChange={handleInputChange} placeholder="Choose a city..." className='input input-bordered input-primary w-full max-w-xs' />
+                <button type="submit" className='btn btn-active btn-primary mx-5'>Submit</button>
             </form>
             {isLoading ? (
                 <div className="loader">Loading...</div>
             ) : (
                 city && (
-                    <div>
-                        <div className='text-5xl my-10'><b>City:</b> {city}</div>
-                        <p>CO: {airQuality.co}</p>
-                        <p>NO: {airQuality.no}</p>
-                        <p>NO2: {airQuality.no2}</p>
+                    <div className="stats shadow">
+                        <div className="stat">
+                            <div className="stat-figure text-primary">
+                                {/* Add an appropriate icon for CO */}
+                            </div>
+                            <div className="stat-title">CO</div>
+                            <div className="stat-value text-primary">{airQuality.co}</div>
+                            {/* Add a description if needed */}
+                            <div className="stat-desc"></div>
+                        </div>
+                        <div className="stat">
+                            <div className="stat-figure text-secondary">
+                                {/* Add an appropriate icon for NO */}
+                            </div>
+                            <div className="stat-title">NO</div>
+                            <div className="stat-value text-secondary">{airQuality.no}</div>
+                            {/* Add a description if needed */}
+                            <div className="stat-desc"></div>
+                        </div>
+                        <div className="stat">
+                            <div className="stat-figure text-secondary">
+                                {/* Add an appropriate icon for NO2 */}
+                            </div>
+                            <div className="stat-title">NO2</div>
+                            <div className="stat-value">{airQuality.no2}</div>
+                            {/* Add a description if needed */}
+                            <div className="stat-desc text-secondary"></div>
+                        </div>
+                        <div className="stat">
+                            <div className="stat-figure text-secondary">
+                                {/* Add an appropriate icon for the remaining values */}
+                            </div>
+                            <div className="stat-title">Remaining values</div>
+                            <div className="stat-value text-secondary">{/* Add remaining values here */}</div>
+                            {/* Add a description if needed */}
+                            <div className="stat-desc"></div>
+                        </div>
                     </div>
+
                 )
             )}
-            <div className="text-5xl my-10">Stats</div>
-            <button onClick={handleStatsRefresh}>Refresh Stats</button>
-            <Stats refresh={refresh} /> {/* Include the Stats component and pass the refresh prop */}
+            <div className="text-5xl my-10"><b>Stats</b></div>
+            <div className='flex justify-center'>
+                <Stats refresh={refresh} /> {/* Include the Stats component and pass the refresh prop */}
+                <button className='btn btn-active btn-secondary mx-5 my-auto' onClick={handleStatsRefresh}>Refresh Stats</button>
+            </div>
         </div>
 
     );
