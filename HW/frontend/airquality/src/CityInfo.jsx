@@ -44,6 +44,10 @@ const CityInfo = () => {
         fetchAirQuality();
     }, [coordinates]);
 
+    const handleStatsRefresh = () => {
+        setRefresh((prevRefresh) => !prevRefresh);
+    };
+
 
     const handleInputChange = (e) => {
         setInput(e.target.value);
@@ -54,12 +58,11 @@ const CityInfo = () => {
         setCity(''); // Clear the city name
         setCoordinates({ lat: 0, lon: 0 }); // Reset the coordinates
         fetchCoordinates();
-        setRefresh(!refresh); // Toggle the refresh state to trigger a refresh of the Stats component
     };
 
     return (
         <div>
-            <h2>Air Quality Information</h2>
+            <div className='text-9xl mb-10'>Air Quality Information</div>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="cityInput">City: </label>
                 <input type="text" id="cityInput" value={input} onChange={handleInputChange} />
@@ -70,16 +73,18 @@ const CityInfo = () => {
             ) : (
                 city && (
                     <div>
-                        <h3>{city}</h3>
+                        <div className='text-5xl my-10'><b>City:</b> {city}</div>
                         <p>CO: {airQuality.co}</p>
                         <p>NO: {airQuality.no}</p>
                         <p>NO2: {airQuality.no2}</p>
                     </div>
                 )
             )}
+            <div className="text-5xl my-10">Stats</div>
+            <button onClick={handleStatsRefresh}>Refresh Stats</button>
             <Stats refresh={refresh} /> {/* Include the Stats component and pass the refresh prop */}
-
         </div>
+
     );
 
 };
