@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
+import Stats from './Stats';
 
 const CityInfo = () => {
     const [input, setInput] = useState('');
@@ -7,6 +8,8 @@ const CityInfo = () => {
     const [coordinates, setCoordinates] = useState({ lat: 0, lon: 0 });
     const [airQuality, setAirQuality] = useState({ co: null, no: null, no2: null });
     const [isLoading, setIsLoading] = useState(false);
+    const [refresh, setRefresh] = useState(false);
+
 
     const fetchCoordinates = async () => {
         try {
@@ -51,6 +54,7 @@ const CityInfo = () => {
         setCity(''); // Clear the city name
         setCoordinates({ lat: 0, lon: 0 }); // Reset the coordinates
         fetchCoordinates();
+        setRefresh(!refresh); // Toggle the refresh state to trigger a refresh of the Stats component
     };
 
     return (
@@ -73,6 +77,8 @@ const CityInfo = () => {
                     </div>
                 )
             )}
+            <Stats refresh={refresh} /> {/* Include the Stats component and pass the refresh prop */}
+
         </div>
     );
 
