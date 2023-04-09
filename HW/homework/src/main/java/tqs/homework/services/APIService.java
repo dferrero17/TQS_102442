@@ -33,7 +33,7 @@ public class APIService {
             Stats.getInstance().incrementCacheMisses();
             OpenWeatherData newData = api.call(lat, lon);
             if (newData == null) {
-                logger.info("API failed");
+                logger.error("API failed");
                 Stats.getInstance().incrementApiFails();
                 return null;
             }

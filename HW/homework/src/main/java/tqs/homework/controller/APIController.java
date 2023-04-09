@@ -33,10 +33,10 @@ public class APIController {
     public ResponseEntity<OpenWeatherComponent> getAirQualityNow(@RequestParam Double lat, @RequestParam Double lon) {
         OpenWeatherComponent cmp = aqService.getMostRecentAirQuality(lat, lon);
         if (cmp == null) {
-            logger.info("OpenWeather API Now failed");
+            logger.error("OpenWeather API Now failed");
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
-        logger.info("OpenWeather API Now called");
+        logger.info("OpenWeather API Now called successfully");
         return ResponseEntity.ok(cmp);
     }
 
@@ -44,10 +44,10 @@ public class APIController {
     public ResponseEntity<OpenWeatherData> getAirQualityForecast(@RequestParam Double lat, @RequestParam Double lon) {
         OpenWeatherData data = aqService.getAirQuality(lat, lon);
         if (data == null) {
-            logger.info("OpenWeather API History failed");
+            logger.error("OpenWeather API History failed");
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
-        logger.info("OpenWeather API History called");
+        logger.info("OpenWeather API History called successfully");
         return ResponseEntity.ok(data);
     }
 
@@ -55,10 +55,10 @@ public class APIController {
     public ResponseEntity<MapQuestData> getCity(@RequestParam Double lat, @RequestParam Double lon) {
         MapQuestData data = geoService.getGeoCoding(lat, lon);
         if (data == null) {
-            logger.info("MapQuest API failed");
+            logger.error("MapQuest API failed");
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
-        logger.info("MapQuest API called");
+        logger.info("MapQuest API called successfully");
         return ResponseEntity.ok(data);
     }
 
@@ -66,10 +66,10 @@ public class APIController {
     public ResponseEntity<MapQuestLocationData> getCity(@RequestParam String location) {
         MapQuestLocationData data = reverseGeoCodingService.getReverseGeoCoding(location);
         if (data == null) {
-            logger.info("MapQuest API failed");
+            logger.error("Reverse MapQuest API failed");
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
-        logger.info("MapQuest API called");
+        logger.info("Reverse MapQuest API called successfully");
         return ResponseEntity.ok(data);
     }
 }
