@@ -24,8 +24,8 @@ const Stats = ({ refresh }) => {
                 <div className="stat-figure text-primary">
                     {/* Add an appropriate icon here */}
                 </div>
-                <div className="stat-title">Cache Misses</div>
-                <div className="stat-value text-primary">{stats.cacheMisses}</div>
+                <div className="stat-title text-warning">Cache Misses</div>
+                <div className="stat-value text-warning">{stats.cacheMisses}</div>
                 {/* Add a description if needed */}
                 <div className="stat-desc"></div>
             </div>
@@ -43,8 +43,8 @@ const Stats = ({ refresh }) => {
                 <div className="stat-figure text-secondary">
                     {/* Add an appropriate icon here */}
                 </div>
-                <div className="stat-title">API Fails</div>
-                <div className="stat-value">{stats.apiFails}</div>
+                <div className="stat-title text-error">API Fails</div>
+                <div className="stat-value text-error">{stats.apiFails}</div>
                 {/* Add a description if needed */}
                 <div className="stat-desc text-secondary"></div>
             </div>
