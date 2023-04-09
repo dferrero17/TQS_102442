@@ -10,4 +10,10 @@ public interface IMapQuest {
             @Query("key") String apiKey,
             @Query("location") String location
     );
+
+    @GET("geocoding/v1/address")
+    Call<MapQuestLocationData> getReverseLocation(
+            @Query("key") String apikey,
+            @Query("location") String location
+    );
 }

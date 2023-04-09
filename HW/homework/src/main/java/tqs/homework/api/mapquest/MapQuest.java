@@ -35,4 +35,15 @@ public class MapQuest {
             return null;
         }
     }
+
+    public MapQuestLocationData reverseCall(String location) {
+        try {
+            logger.info("MapQuest API called");
+            return api.getReverseLocation(apiKey, location).execute().body();
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.info("MapQuest API failed");
+            return null;
+        }
+    }
 }

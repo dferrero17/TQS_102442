@@ -2,6 +2,7 @@ package tqs.homework.controller;
 
 
 import tqs.homework.api.mapquest.MapQuestData;
+import tqs.homework.api.mapquest.MapQuestLocationData;
 import tqs.homework.api.openweather.OpenWeatherComponent;
 import tqs.homework.api.openweather.OpenWeatherData;
 import tqs.homework.services.APIService;
