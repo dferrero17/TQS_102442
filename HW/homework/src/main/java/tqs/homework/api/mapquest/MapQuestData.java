@@ -21,7 +21,7 @@ public class MapQuestData {
     @JsonProperty("results")
     private void unpackInfo(List<HashMap<String, Object>> results) {
         HashMap<String, Object> result = results.get(0);
-
+        @SuppressWarnings("unchecked")
         HashMap<String, Object> location = (HashMap<String, Object>) (
                 (List<Object>) result.get("locations")
         ).get(0);
