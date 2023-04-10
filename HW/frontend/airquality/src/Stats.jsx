@@ -19,7 +19,7 @@ const Stats = ({ refresh }) => {
 
 
     return (
-        <div className="stats shadow">
+        <div className="shadow stats" >
             <div className="stat">
                 <div className="stat-figure text-primary">
                     {/* Add an appropriate icon here */}

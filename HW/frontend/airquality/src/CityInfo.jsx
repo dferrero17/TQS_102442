@@ -123,15 +123,15 @@ const CityInfo = () => {
 
     return (
         <div>
-            <div className='text-9xl my-10'>Air Quality Information</div>
+            <div className='my-10 text-9xl'>Air Quality Information</div>
             <form onSubmit={handleSubmit}>
                 <input type="text" id="cityInput" value={input} onChange={handleInputChange} placeholder="Choose a city..." className='input input-bordered input-primary w-[60rem]' />
-                <button type="submit" className='btn btn-active btn-primary mx-5'>Submit</button>
+                <button type="submit" className='mx-5 btn btn-active btn-primary'>Submit</button>
             </form>
-            <div className="text-5xl mt-10 flex items-center text-center justify-center relative">
+            <div className="relative flex items-center justify-center mt-10 text-5xl text-center">
                 {city ? (
                     <b>
-                        {city}<sup className="text-xs align-top ml-1 text-primary absolute">(Lat: {coordinates.lat.toFixed(2)}, Long: {coordinates.lon.toFixed(2)})</sup>
+                        {city}<sup className="absolute ml-1 text-xs align-top text-primary">(Lat: {coordinates.lat.toFixed(2)}, Long: {coordinates.lon.toFixed(2)})</sup>
                     </b>
                 ) : (
                     <div>City</div>
@@ -139,11 +139,11 @@ const CityInfo = () => {
             </div>
 
             <div className="toggle-container">
-                <label className="label cursor-pointer"></label>
-                <div className="label-text text-xl my-1">See Past 7 Days</div>
+                <label className="cursor-pointer label"></label>
+                <div className="my-1 text-xl label-text">See Past 7 Days</div>
                 <input
                     type="checkbox"
-                    className="toggle mb-1"
+                    className="mb-1 toggle"
                     checked={useHistory}
                     onChange={toggleUseHistory}
                 />
@@ -154,7 +154,7 @@ const CityInfo = () => {
                 city && (
                     useHistory ? (
                         historicalData.map((item, index) => (
-                            <div className="stats shadow" key={index}>
+                            <div className="shadow stats" key={index}>
                                 <div className="stat">
                                     <div className="stat-title text-primary">Days ago</div>
                                     <div className="stat-value text-primary-focus">{index + 1}</div>
@@ -165,24 +165,24 @@ const CityInfo = () => {
                                         <div className="stat" key={key}>
                                             <div className="stat-figure text-secondary">
                                             </div>
-                                            <div className="stat-title w-20">{key.toUpperCase()}</div>
-                                            <div className="stat-value w-20">{value}</div>
-                                            <div className="stat-desc w-20">µg/m³</div>
+                                            <div className="w-20 stat-title">{key.toUpperCase()}</div>
+                                            <div className="w-20 stat-value">{value}</div>
+                                            <div className="w-20 stat-desc">µg/m³</div>
                                         </div>
                                     );
                                 })}
                             </div>
                         ))
                     ) : (
-                        <div className="stats shadow">
+                        <div className="shadow stats airq">
                             {Object.entries(airQuality).map(([key, value]) => (
                                 <div className="stat" key={key}>
                                     <div className="stat-figure text-secondary">
                                         {/* Add an appropriate icon here */}
                                     </div>
-                                    <div className="stat-title w-20">{key.toUpperCase()}</div>
-                                    <div className="stat-value w-20">{value}</div>
-                                    <div className="stat-desc w-20">µg/m³</div>
+                                    <div className="w-20 stat-title">{key.toUpperCase()}</div>
+                                    <div className="w-20 stat-value">{value}</div>
+                                    <div className="w-20 stat-desc">µg/m³</div>
                                 </div>
                             ))}
 
@@ -190,10 +190,10 @@ const CityInfo = () => {
                     )
                 )
             )}
-            <div className="text-5xl my-10"><b>Stats</b></div>
+            <div className="my-10 text-5xl"><b>Stats</b></div>
             <div className='flex justify-center'>
                 <Stats refresh={refresh} /> {/* Include the Stats component and pass the refresh prop */}
-                <button className='btn btn-active btn-secondary mx-5 my-auto' onClick={handleStatsRefresh}>Refresh Stats</button>
+                <button className='mx-5 my-auto btn btn-active btn-secondary' onClick={handleStatsRefresh}>Refresh Stats</button>
             </div>
         </div>
     );
