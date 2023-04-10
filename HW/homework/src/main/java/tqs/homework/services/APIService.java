@@ -50,7 +50,7 @@ public class APIService {
     public OpenWeatherComponent getMostRecentAirQuality(Double lat, Double lon) {
         OpenWeatherData data = getAirQuality(lat, lon);
         if (data == null) {
-            logger.info("Most Recent Air Quality API failed");
+            logger.error("Most Recent Air Quality API failed");
             return null;
         }
         logger.info("Most Recent Air Quality API hit");

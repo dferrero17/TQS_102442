@@ -2,9 +2,7 @@ package tqs.homework.cache;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.util.HashMap;
-
 
 public class Storage<Key, Value> {
     private final HashMap<Key, Value> data = new HashMap<>();
@@ -19,17 +17,21 @@ public class Storage<Key, Value> {
 
     public void put(Key key, Value value) {
         data.put(key, value);
-        ttl.put(key, System.currentTimeMillis());
+        ttl.put(key, getCurrentTimeMillis());
         logger.info("Storage put");
     }
 
     public Value get(Key key) {
-        if (ttl.containsKey(key) && System.currentTimeMillis() - ttl.get(key) > maxTtl) {
+        if (ttl.containsKey(key) && getCurrentTimeMillis() - ttl.get(key) > maxTtl) {
             data.remove(key);
             ttl.remove(key);
             logger.info("Storage removed");
         }
         logger.info("Storage get");
         return data.get(key);
+    }
+
+    protected long getCurrentTimeMillis() {
+        return System.currentTimeMillis();
     }
 }

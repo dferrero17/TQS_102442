@@ -2,6 +2,7 @@ package tqs.homework.cache;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -10,7 +11,7 @@ class StorageTest {
 
     @BeforeEach
     void setUp() {
-        storage = new Storage<>(5000L);
+        storage = Mockito.spy(new Storage<>(5000L));
     }
 
     @Test
@@ -20,9 +21,14 @@ class StorageTest {
     }
 
     @Test
-    void testItemExpiration() throws InterruptedException {
+    void testItemExpiration() {
+        Mockito.doReturn(1000L).when(storage).getCurrentTimeMillis();
+
         storage.put("key2", 2);
-        Thread.sleep(6000L); // sleep for 6 seconds, longer than maxTtl
+
+        // Simulate time passing (6 seconds)
+        Mockito.doReturn(1000L + 6000L).when(storage).getCurrentTimeMillis();
+
         assertNull(storage.get("key2"));
     }
 }
