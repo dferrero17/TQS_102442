@@ -64,7 +64,7 @@ public class APIController {
     }
 
     @GetMapping("/city/{location}")
-    public ResponseEntity<MapQuestLocationData> getCity(@RequestParam String location) {
+    public ResponseEntity<MapQuestLocationData> getCity(@PathVariable String location) {
         MapQuestLocationData data = reverseGeoCodingService.getReverseGeoCoding(location);
         if (data == null) {
             logger.error("Reverse MapQuest API failed");
