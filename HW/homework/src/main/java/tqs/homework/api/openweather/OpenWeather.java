@@ -35,7 +35,6 @@ public class OpenWeather {
             logger.info("OpenWeather API called");
             return api.getHistory(lat, lon, start, end, apiKey).execute().body();
         } catch (Exception e) {
-            e.printStackTrace();
             logger.info("OpenWeather API failed");
             return null;
         }

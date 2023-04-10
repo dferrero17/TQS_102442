@@ -41,7 +41,6 @@ public class MapQuest {
             logger.info("MapQuest API called");
             return api.getReverseLocation(apiKey, location).execute().body();
         } catch (Exception e) {
-            e.printStackTrace();
             logger.info("MapQuest API failed");
             return null;
         }

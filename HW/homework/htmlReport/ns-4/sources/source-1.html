@@ -1,0 +1,140 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Storage</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">tqs.homework.cache</a>
+</div>
+
+<h1>Coverage Summary for Class: Storage (tqs.homework.cache)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Storage</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (15/15)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package tqs.homework.cache;
+&nbsp;
+&nbsp;import org.slf4j.Logger;
+&nbsp;import org.slf4j.LoggerFactory;
+&nbsp;import java.util.HashMap;
+&nbsp;
+&nbsp;public class Storage&lt;Key, Value&gt; {
+<b class="fc">&nbsp;    private final HashMap&lt;Key, Value&gt; data = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;    private final HashMap&lt;Key, Long&gt; ttl = new HashMap&lt;&gt;();</b>
+&nbsp;    private final Long maxTtl;
+&nbsp;
+<b class="fc">&nbsp;    private final Logger logger = LoggerFactory.getLogger(Storage.class);</b>
+&nbsp;
+<b class="fc">&nbsp;    public Storage(Long maxTtl) {</b>
+<b class="fc">&nbsp;        this.maxTtl = maxTtl;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void put(Key key, Value value) {
+<b class="fc">&nbsp;        data.put(key, value);</b>
+<b class="fc">&nbsp;        ttl.put(key, getCurrentTimeMillis());</b>
+<b class="fc">&nbsp;        logger.info(&quot;Storage put&quot;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Value get(Key key) {
+<b class="fc">&nbsp;        if (ttl.containsKey(key) &amp;&amp; getCurrentTimeMillis() - ttl.get(key) &gt; maxTtl) {</b>
+<b class="fc">&nbsp;            data.remove(key);</b>
+<b class="fc">&nbsp;            ttl.remove(key);</b>
+<b class="fc">&nbsp;            logger.info(&quot;Storage removed&quot;);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        logger.info(&quot;Storage get&quot;);</b>
+<b class="fc">&nbsp;        return data.get(key);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    protected long getCurrentTimeMillis() {
+<b class="fc">&nbsp;        return System.currentTimeMillis();</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-10 14:22</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,169 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > OpenWeatherComponent</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">tqs.homework.api.openweather</a>
+</div>
+
+<h1>Coverage Summary for Class: OpenWeatherComponent (tqs.homework.api.openweather)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">OpenWeatherComponent</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    94.1%
+  </span>
+  <span class="absValue">
+    (16/17)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    92.3%
+  </span>
+  <span class="absValue">
+    (24/26)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package tqs.homework.api.openweather;
+&nbsp;
+&nbsp;import com.fasterxml.jackson.annotation.JsonProperty;
+&nbsp;import lombok.AllArgsConstructor;
+&nbsp;import lombok.Data;
+&nbsp;import lombok.NoArgsConstructor;
+&nbsp;import org.slf4j.Logger;
+&nbsp;import org.slf4j.LoggerFactory;
+&nbsp;
+&nbsp;import java.util.HashMap;
+&nbsp;
+<b class="nc">&nbsp;@AllArgsConstructor</b>
+<b class="fc">&nbsp;@NoArgsConstructor</b>
+<b class="fc">&nbsp;@Data</b>
+&nbsp;public class OpenWeatherComponent {
+<b class="fc">&nbsp;    private int aqi;</b>
+<b class="fc">&nbsp;    private double co;</b>
+<b class="fc">&nbsp;    private double no;</b>
+<b class="fc">&nbsp;    private double no2;</b>
+<b class="fc">&nbsp;    private double o3;</b>
+<b class="fc">&nbsp;    private double so2;</b>
+<b class="fc">&nbsp;    private double pm2_5;</b>
+<b class="fc">&nbsp;    private double pm10;</b>
+<b class="fc">&nbsp;    private double nh3;</b>
+<b class="fc">&nbsp;    private long dt;</b>
+<b class="fc">&nbsp;    private final Logger logger = LoggerFactory.getLogger(OpenWeatherComponent.class);</b>
+&nbsp;
+&nbsp;    @JsonProperty(&quot;dt&quot;)
+&nbsp;    private void unpackDt(long dt) {
+<b class="fc">&nbsp;        this.dt = dt * 1000;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @JsonProperty(&quot;main&quot;)
+&nbsp;    private void unpackMain(HashMap&lt;String, Integer&gt; main) {
+<b class="fc">&nbsp;        this.aqi = main.get(&quot;aqi&quot;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @JsonProperty(&quot;components&quot;)
+&nbsp;    private void unpackComponents(HashMap&lt;String, Double&gt; components) {
+<b class="fc">&nbsp;        this.co = components.get(&quot;co&quot;);</b>
+<b class="fc">&nbsp;        this.no = components.get(&quot;no&quot;);</b>
+<b class="fc">&nbsp;        this.no2 = components.get(&quot;no2&quot;);</b>
+<b class="fc">&nbsp;        this.o3 = components.get(&quot;o3&quot;);</b>
+<b class="fc">&nbsp;        this.so2 = components.get(&quot;so2&quot;);</b>
+<b class="fc">&nbsp;        this.pm2_5 = components.get(&quot;pm2_5&quot;);</b>
+<b class="fc">&nbsp;        this.pm10 = components.get(&quot;pm10&quot;);</b>
+<b class="fc">&nbsp;        this.nh3 = components.get(&quot;nh3&quot;);</b>
+<b class="fc">&nbsp;        logger.info(&quot;OpenWeather Unpacked&quot;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public String toString() {
+<b class="nc">&nbsp;        return &quot;OpenWeatherComponent{&quot; +</b>
+&nbsp;                &quot;aqi=&quot; + aqi +
+&nbsp;                &quot;, co=&quot; + co +
+&nbsp;                &quot;, no=&quot; + no +
+&nbsp;                &quot;, no2=&quot; + no2 +
+&nbsp;                &quot;, o3=&quot; + o3 +
+&nbsp;                &quot;, so2=&quot; + so2 +
+&nbsp;                &quot;, pm2_5=&quot; + pm2_5 +
+&nbsp;                &quot;, pm10=&quot; + pm10 +
+&nbsp;                &quot;, nh3=&quot; + nh3 +
+&nbsp;                &quot;, dt=&quot; + dt +
+&nbsp;                &#39;}&#39;;
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-10 14:22</div>
+</div>
+</body>
+</html>

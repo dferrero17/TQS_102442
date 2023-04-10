@@ -16,7 +16,7 @@ import tqs.homework.services.ReverseGeoCodingService;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:5174")
 public class APIController {
     private final APIService aqService;
     private final GeoCodingService geoService;

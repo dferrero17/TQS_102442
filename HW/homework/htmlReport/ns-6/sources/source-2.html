@@ -1,0 +1,152 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > GeoCodingService</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">tqs.homework.services</a>
+</div>
+
+<h1>Coverage Summary for Class: GeoCodingService (tqs.homework.services)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">GeoCodingService</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (22/22)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package tqs.homework.services;
+&nbsp;
+&nbsp;import tqs.homework.api.mapquest.MapQuest;
+&nbsp;import tqs.homework.api.mapquest.MapQuestData;
+&nbsp;import tqs.homework.api.mapquest.MapQuestKey;
+&nbsp;import tqs.homework.cache.Storage;
+&nbsp;import tqs.homework.statistics.Stats;
+&nbsp;import org.slf4j.Logger;
+&nbsp;import org.slf4j.LoggerFactory;
+&nbsp;import org.springframework.stereotype.Service;
+&nbsp;
+&nbsp;
+&nbsp;@Service
+&nbsp;public class GeoCodingService {
+&nbsp;    private MapQuest api;
+&nbsp;
+&nbsp;    private Storage&lt;MapQuestKey, MapQuestData&gt; cache;
+<b class="fc">&nbsp;    private final Logger logger = LoggerFactory.getLogger(GeoCodingService.class);</b>
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;    public GeoCodingService(MapQuest api) {</b>
+<b class="fc">&nbsp;        this.api = api;</b>
+<b class="fc">&nbsp;        this.cache = new Storage&lt;&gt;(10_000L);  // 10 seconds</b>
+<b class="fc">&nbsp;        logger.info(&quot;GeoCoding Service created&quot;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public MapQuestData getGeoCoding(Double lat, Double lon) {
+<b class="fc">&nbsp;        MapQuestKey key = new MapQuestKey(lat, lon);</b>
+<b class="fc">&nbsp;        MapQuestData data = cache.get(key);</b>
+<b class="fc">&nbsp;        if (data == null) {</b>
+<b class="fc">&nbsp;            logger.info(&quot;Cache miss&quot;);</b>
+<b class="fc">&nbsp;            Stats.getInstance().incrementCacheMisses();</b>
+<b class="fc">&nbsp;            MapQuestData newData = api.call(lat, lon);</b>
+<b class="fc">&nbsp;            if (newData != null) {</b>
+<b class="fc">&nbsp;                logger.info(&quot;API hit&quot;);</b>
+<b class="fc">&nbsp;                Stats.getInstance().incrementApiHits();</b>
+<b class="fc">&nbsp;                cache.put(key, newData);</b>
+<b class="fc">&nbsp;                return newData;</b>
+&nbsp;            } else {
+<b class="fc">&nbsp;                logger.info(&quot;API failed&quot;);</b>
+<b class="fc">&nbsp;                Stats.getInstance().incrementApiFails();</b>
+<b class="fc">&nbsp;                return null;</b>
+&nbsp;            }
+&nbsp;        }
+<b class="fc">&nbsp;        logger.info(&quot;Cache hit&quot;);</b>
+<b class="fc">&nbsp;        Stats.getInstance().incrementCacheHits();</b>
+<b class="fc">&nbsp;        return data;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-10 14:22</div>
+</div>
+</body>
+</html>

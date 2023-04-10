@@ -12,7 +12,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/stats")
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:5174")
 public class StatsController {
     private final Logger logger = LoggerFactory.getLogger(StatsController.class);
 

@@ -13,7 +13,7 @@ public class ReverseGeoCodingService {
     private MapQuest api;
 
     private Storage<String, MapQuestLocationData> cache;
-    private final Logger logger = LoggerFactory.getLogger(GeoCodingService.class);
+    private final Logger logger = LoggerFactory.getLogger(ReverseGeoCodingService.class);
 
 
     public ReverseGeoCodingService(MapQuest api) {

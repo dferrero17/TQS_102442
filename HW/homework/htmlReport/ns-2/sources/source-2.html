@@ -1,0 +1,148 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > MapQuestData</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">tqs.homework.api.mapquest</a>
+</div>
+
+<h1>Coverage Summary for Class: MapQuestData (tqs.homework.api.mapquest)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">MapQuestData</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    85.7%
+  </span>
+  <span class="absValue">
+    (6/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    93.8%
+  </span>
+  <span class="absValue">
+    (15/16)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package tqs.homework.api.mapquest;
+&nbsp;
+&nbsp;import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+&nbsp;import com.fasterxml.jackson.annotation.JsonProperty;
+&nbsp;import lombok.Data;
+&nbsp;import org.slf4j.Logger;
+&nbsp;import org.slf4j.LoggerFactory;
+&nbsp;
+&nbsp;import java.util.HashMap;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;@JsonIgnoreProperties(ignoreUnknown = true)
+<b class="fc">&nbsp;@Data</b>
+&nbsp;public class MapQuestData {
+<b class="fc">&nbsp;    private String state;</b>
+<b class="fc">&nbsp;    private String city;</b>
+<b class="fc">&nbsp;    private String road;</b>
+<b class="fc">&nbsp;    private String zip;</b>
+<b class="fc">&nbsp;    private final Logger logger = LoggerFactory.getLogger(MapQuestData.class);</b>
+&nbsp;
+&nbsp;    @JsonProperty(&quot;results&quot;)
+&nbsp;    private void unpackInfo(List&lt;HashMap&lt;String, Object&gt;&gt; results) {
+<b class="fc">&nbsp;        HashMap&lt;String, Object&gt; result = results.get(0);</b>
+&nbsp;        @SuppressWarnings(&quot;unchecked&quot;)
+<b class="fc">&nbsp;        HashMap&lt;String, Object&gt; location = (HashMap&lt;String, Object&gt;) (</b>
+<b class="fc">&nbsp;                (List&lt;Object&gt;) result.get(&quot;locations&quot;)</b>
+<b class="fc">&nbsp;        ).get(0);</b>
+&nbsp;
+<b class="fc">&nbsp;        state = location.get(&quot;adminArea3&quot;).toString();</b>
+<b class="fc">&nbsp;        city = location.get(&quot;adminArea5&quot;).toString();</b>
+<b class="fc">&nbsp;        road = location.get(&quot;street&quot;).toString();</b>
+<b class="fc">&nbsp;        zip = location.get(&quot;postalCode&quot;).toString();</b>
+<b class="fc">&nbsp;        logger.info(&quot;MapQuest Unpacked&quot;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public String toString() {
+<b class="nc">&nbsp;        return &quot;MapQuestData{&quot; +</b>
+&nbsp;                &quot;state=&#39;&quot; + state + &#39;\&#39;&#39; +
+&nbsp;                &quot;, city=&#39;&quot; + city + &#39;\&#39;&#39; +
+&nbsp;                &quot;, road=&#39;&quot; + road + &#39;\&#39;&#39; +
+&nbsp;                &quot;, zip=&#39;&quot; + zip + &#39;\&#39;&#39; +
+&nbsp;                &#39;}&#39;;
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-10 14:22</div>
+</div>
+</body>
+</html>
