@@ -16,6 +16,7 @@ const CityInfo = () => {
         pm10: null,
         nh3: null,
     });
+    
     const airQualityKeys = ['co', 'no', 'no2', 'o3', 'so2', 'pm2_5', 'pm10', 'nh3'];
 
     const [isLoading, setIsLoading] = useState(false);
@@ -197,7 +198,6 @@ const CityInfo = () => {
             </div>
         </div>
     );
-
 };
 
 export default CityInfo;
