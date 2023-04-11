@@ -3,6 +3,7 @@ package tqs.homework.frontend;
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
@@ -11,3 +12,5 @@ import org.junit.runner.RunWith;
 )
 public class FrontendTest {
 }
+
+// VAI AO DISCORD JÁ DESCOBRI O PROBLEMA

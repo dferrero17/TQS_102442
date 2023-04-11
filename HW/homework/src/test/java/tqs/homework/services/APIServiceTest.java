@@ -2,7 +2,11 @@ package tqs.homework.services;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import tqs.homework.api.openweather.OpenWeather;
 import tqs.homework.api.openweather.OpenWeatherComponent;
 import tqs.homework.api.openweather.OpenWeatherData;
@@ -21,16 +25,19 @@ import static org.mockito.Mockito.when;
 import org.junit.jupiter.api.AfterEach;
 
 
+@SpringBootTest
 class APIServiceTest {
-
+    @Mock
     private OpenWeather openWeatherMock;
+    @Mock(strictness = Mock.Strictness.LENIENT)
     private Stats statsMock;
+    @InjectMocks
     private APIService apiService;
 
     @BeforeEach
     void setUp() {
-        openWeatherMock = Mockito.mock(OpenWeather.class);
-        statsMock = Mockito.mock(Stats.class);
+        // openWeatherMock = Mockito.mock(OpenWeather.class);
+        // statsMock = Mockito.mock(Stats.class);
 
         Mockito.mockStatic(Stats.class);
         when(Stats.getInstance()).thenReturn(statsMock);

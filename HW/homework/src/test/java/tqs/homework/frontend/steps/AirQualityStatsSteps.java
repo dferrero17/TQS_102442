@@ -26,7 +26,7 @@ public class AirQualityStatsSteps {
         System.setProperty("webdriver.firefox.driver", "driver/geckodriver");
         WebDriverManager.firefoxdriver().setup();
         driver = new FirefoxDriver();
-        driver.get("http://localhost:5174/");
+        driver.get("http://localhost:5173/");
     }
 
     @When("the user selects a location")

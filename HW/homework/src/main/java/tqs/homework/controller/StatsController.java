@@ -12,7 +12,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/stats")
-@CrossOrigin()
+@CrossOrigin
 public class StatsController {
     private final Logger logger = LoggerFactory.getLogger(StatsController.class);
 
